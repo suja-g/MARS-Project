@@ -64,7 +64,7 @@ function empty() {
 }
 
 function bestSpot() {
-    return minimax(board, ai).index;
+    return (minimax(board, ai)).index;
 }
 function checkTie()
 {
@@ -83,6 +83,7 @@ function checkTie()
     }
 }
 
+//console.log(empty());
 
 function minimax(newBoard,player) {
     var availSpots=empty();
@@ -103,9 +104,11 @@ function minimax(newBoard,player) {
     if(player==ai) {
         var result=minimax(newBoard,human);
         move.score=result.score;
+        
     } else {
         var result=minimax(newBoard,ai);
         move.score=result.score;
+        //move.score=(minimax(newBoard,ai)).score;
     }
     newBoard[availSpots[i]]=move.index;
     moves.push(move);
@@ -133,3 +136,12 @@ if(player===ai) {
  }
 return moves[bestMove];
 }
+/*function gameScore(mini_max,newBoard,availSpots) {
+    if(minimax(newBoard,human)&&checkWin(newBoard,human)) {
+        return -10;
+         } else if(minimax(newBoard,human)&&checkWin(newBoard,ai)) {
+        return 10;
+         } else if(availSpots===0) {
+        return 0;
+         }    
+}*/
