@@ -82,7 +82,7 @@ function checkTie()
         return false;
     }
 }
-var result={};
+
 
 function minimax(newBoard,player) {
     var availSpots=empty();
