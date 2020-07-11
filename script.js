@@ -1,16 +1,38 @@
-var board;
-var player;
-const human='O';
-const opponent='X';
-var ai;
-var friend;
-var temp;
+let board;
+//var player;
+let human='O';
+let ai='X';
+//var ai;
+//var friend;
+//var temp;
 const wins=[
     [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]
 ]
 const cells=document.querySelectorAll(".cell");
 startGame();
 //h2h();
+function selectSym(sym){
+    human = sym;
+    ai = sym==='O' ? 'X' :'O';
+    if(human==='O')
+    {
+      document.getElementById("second").style.backgroundColor="green";
+      document.getElementById("first").style.backgroundColor="rgb(248, 85, 166)";
+    }
+    else{
+        document.getElementById("first").style.backgroundColor="green";
+      document.getElementById("second").style.backgroundColor="rgb(248, 85, 166)";
+    }
+    board = Array.from(Array(9).keys());
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].addEventListener('click', turnclick, false);
+    }
+    if (ai === 'X') {
+      turn(bestSpot(),aiPlayer);
+      
+    }
+   // document.querySelector('.selectSym').style.display = "none";
+  }
 
 function opposite1(ai) {
     temp='ai';
@@ -61,12 +83,13 @@ function start() {
 
 function startGame() {
     document.querySelector(".endgame").style.display="none";
+  document.querySelector('.endgame .text').innerText ="";
+  document.querySelector('.selectSym').style.display = "block";
     board=Array.from(Array(9).keys());
     for(var i=0;i<cells.length;i++)
     {
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
-        cells[i].addEventListener('click',turnclick,false);
     }
 }
 function turnclick(square) {
@@ -95,9 +118,10 @@ function turnclick(square) {
 
 function turn(squareId, player) {
     board[squareId]=player;
-    document.getElementById(squareId).innerText=player;
+    document.getElementById(squareId).innerHTML=player;
     let gameWon=checkWin(board,player);
     if(gameWon) gameOver(gameWon);
+    checkTie();
 }
 function checkWin(boards, player) {
     let plays=boards.reduce((a,e,i) => (e===player) ? a.concat(i):a,[]);
@@ -128,7 +152,7 @@ document.querySelector(".endgame .text").innerText=who;
 }
 
 function empty() {
-    return board.filter(s => typeof s == 'number');
+    return board.filter((elm, i) => i===elm);
 }
 
 function bestSpot() {
@@ -146,15 +170,15 @@ function checkTie()
         declareWin("Tie Game!")
         return true;
     }
-    else {
+    
         return false;
-    }
+    
 }
 
 //console.log(empty());
-
+let score;
 function minimax(board,player) {
-    var availSpots=empty();
+    var availSpots=empty(board);
     if(checkWin(board,human)) {
     return {score: -10};
      } else if(checkWin(board,ai)) {
@@ -170,7 +194,7 @@ function minimax(board,player) {
          let id=availSpots[i];
          let backUp=board[id];
          board[id]=player;    
-         move.id=id;
+         move.index=board[id];
     //move.index=newBoard[availSpots[i]];
     //newBoard[availSpots[i]]=player;
     if(player==ai) {
@@ -181,25 +205,25 @@ function minimax(board,player) {
         //move.score=(minimax(newBoard,ai)).score;
     }
     board[id]=backUp;
-   /* if ((player === ai && move.score === 10) || (player === human && move.score === -10))
+    if ((player === ai && move.score === 10) || (player === human && move.score === -10))
       return move;
-    else */
+    else 
       moves.push(move);
     
 }
-var bestMove;
+let bestMove,bestScore;
 if(player===ai) {
-    var bestScore=-100000;
+     bestScore=-100000;
     for (var i = 0; i < moves.length; i++) {
         if(moves[i].score>bestScore) {
             bestScore=moves[i].score;
-            bestMove=moves[i];
+            bestMove=i;
         }
         
     }
  } else {
     
-    var bestScore=100000;
+     bestScore=100000;
     for (var i = 0; i < moves.length; i++) {
         if(moves[i].score<bestScore) {
             bestScore=moves[i].score;
@@ -208,7 +232,7 @@ if(player===ai) {
         
     }
  }
-return bestMove;
+return moves[bestMove];
 }
 /*function gameScore(mini_max,newBoard,availSpots) {
     if(minimax(newBoard,human)&&checkWin(newBoard,human)) {
