@@ -7,13 +7,13 @@
     </head>
     <body>
         <h1 id="heading">Tic-Tac-Toe</h1>
-        <div id="left"><h2 id="you">YOU</h2>
+        <div id="left"><h2>YOU</h2>
         <h2>Vs</h2>
-    <button class="buttons">Human</button>
-    <button class="buttons">Robot</button>
+    <button class="buttons" onclick="opposite(friend)" id="friend">Friend</button>
+    <button class="buttons" onclick="opposite1(ai)" id="ai">Robot</button>
 <h2>Play As:</h2>
-<button class="buttons">First Player</button>
-<button class="buttons">Second Player</button></div>
+<button class="buttons" id="first">First Player</button>
+<button class="buttons" id="second">Second Player</button></div>
         <div id ="right">
         <table>
             <tr>
