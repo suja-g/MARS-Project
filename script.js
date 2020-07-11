@@ -106,7 +106,7 @@ function minimax(newBoard,player) {
         move.score=result.score;
         
     } else {
-        var result=minimax(newBoard,ai);
+        var result=minimax(newBoard,human);
         move.score=result.score;
         //move.score=(minimax(newBoard,ai)).score;
     }
