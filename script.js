@@ -101,7 +101,7 @@ function minimax(newBoard,player) {
          var move={};     
     move.index=newBoard[availSpots[i]];
     newBoard[availSpots[i]]=player;
-    if(player==ai) {
+    if(player===ai) {
         var result=minimax(newBoard,human);
         move.score=result.score;
         
