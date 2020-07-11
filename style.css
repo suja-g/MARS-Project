@@ -8,14 +8,15 @@ td {
     font-size: 70px;
     cursor: pointer;
 }
+
 table {
     border-collapse: collapse;
-    position: absolute;
+    position: relative;
     left: 50%;
     margin-left: -155px;
-    top: 205px;
-    
+    margin-top: 200px;
 }
+
 td {
     color: white;
     border: none;
@@ -47,14 +48,11 @@ table tr td:last-child {
     top: 300px;
     background-color: rgb(166, 91, 241, 0.8);
     position: absolute;
-    left: 50%;
-    margin-left: -100px;
-    padding-top: 35px;
-    padding-bottom: 30px;
+    margin-left: -10px;
     text-align: center;
     border-radius: 20px;
     color: white;
-    font-size: 3em;
+    font-size: 2.5em;
 }
 .text {
     font-family: "Comic Sans MS";
@@ -74,6 +72,7 @@ table tr td:last-child {
     color: white;
     font-size: 2em;
     font-family: "Comic Sans MS";
+    cursor: pointer;
 }
 #heading {
     text-align: center;
@@ -117,10 +116,10 @@ body {
     height: 50px;
     border: none;
     background-color: rgb(248, 85, 166);
-
     text-align: center;
     border-radius: 10px;
     color: rgb(15, 15, 15);
     font-size: 1em;
     font-family: "Comic Sans MS";
+    cursor: pointer;
 }
