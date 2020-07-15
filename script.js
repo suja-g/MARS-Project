@@ -92,7 +92,7 @@ function minimax(newBoard, player) {
     if(checkWin(newBoard, human)) {
            return {score: -10};
      } else if(checkWin(newBoard, ai)) {
-           return {score: 20};
+           return {score: 10};
      } else if(availSpots.length===0) {
            return {score: 0};
      }
@@ -118,7 +118,7 @@ function minimax(newBoard, player) {
 }
  var bestMove;
  if(player===ai) {
-    var bestScore = -10000;
+    var bestScore = -100000;
     for (var i = 0; i < moves.length; i++) {
         if(moves[i].score>bestScore) {
                bestScore=moves[i].score;
@@ -126,7 +126,7 @@ function minimax(newBoard, player) {
         }
      }
  }else {
-    var bestScore = 10000;
+    var bestScore = 100000;
     for (var i = 0; i < moves.length; i++) {
         if(moves[i].score<bestScore) {
             bestScore = moves[i].score;
