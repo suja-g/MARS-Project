@@ -140,7 +140,8 @@ function minimax(newBoard, player) {
         move.score=result.score;
         //move.score=(minimax(newBoard,ai)).score;
     }
-    board[id]=backUp;
+   // board[id]=backUp;
+   newBoard[availSpots[i]]=move.index;
     if ((player === ai && move.score === 10) || (player === human && move.score === -10))
       return move;
     else 
