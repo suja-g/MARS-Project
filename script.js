@@ -168,12 +168,3 @@ function minimax(newBoard, player) {
  return moves[bestMove];
 }
 
-/*function gameScore(mini_max,newBoard,availSpots) {
-    if(minimax(newBoard,human)&&checkWin(newBoard,human)) {
-        return -10;
-         } else if(minimax(newBoard,human)&&checkWin(newBoard,ai)) {
-        return 10;
-         } else if(availSpots===0) {
-        return 0;
-         }    
-}*/
