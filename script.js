@@ -38,6 +38,8 @@ function selectSym(sym){
     turn(bestSpot(),ai);
    }*/
    for (let i = 0; i < cells.length; i++) {
+    cells[i].innerText="";
+    cells[i].style.removeProperty("background-color");
     cells[i].addEventListener('click', turnclick, false);
 //if() {startGame();break;}
   }
