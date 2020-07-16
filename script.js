@@ -1,7 +1,7 @@
 let board;
 //var player;
 let human='O';
-let opponent='X';
+let ai='X';
 //var ai;
 //var friend;
 //var opponent;
@@ -18,7 +18,7 @@ startGame();
 //h2h();
 function selectSym(sym){
     human = sym;
-    opponent = sym==='O' ? 'X' :'O';
+    ai = sym==='O' ? 'X' :'O';
     board = Array.from(Array(9).keys());
     
     if(human=='O')
@@ -60,7 +60,7 @@ function startGame() {
 function turnclick(square) {
     if(typeof board[square.target.id]=="number") {
     turn(square.target.id, human)
-    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), opponent);}   
+    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), ai);}   
 }
 
 function turn(squareId, player) {
