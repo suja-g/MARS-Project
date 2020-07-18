@@ -1,7 +1,7 @@
 let board;
 //var player;
 let human='O';
-let ai='X';
+let ai='✘';
 //var ai;
 //var friend;
 //var temp;
@@ -16,19 +16,19 @@ function selectSym(sym){
     ai = sym==='O' ? 'X' :'O';
     if(human==='O')
     {
-      document.getElementById("second").style.backgroundColor="green";
-      document.getElementById("first").style.backgroundColor="rgb(248, 85, 166)";
+      document.getElementById("second").style.backgroundColor="#14b1ab";    
+      document.getElementById("first").style.backgroundColor="#f9d56e"
     }
     else{
-        document.getElementById("first").style.backgroundColor="green";
-      document.getElementById("second").style.backgroundColor="rgb(248, 85, 166)";
+        document.getElementById("first").style.backgroundColor="#14b1ab";
+        document.getElementById("second").style.backgroundColor="#f9d56e";
     }
     board = Array.from(Array(9).keys());
     for (let i = 0; i < cells.length; i++) {
       cells[i].addEventListener('click', turnclick, false);
     }
     if (ai === 'X') {
-      turn(bestSpot(),aiPlayer);
+      turn(bestSpot(), ai);
       
     }
    // document.querySelector('.selectSym').style.display = "none";
@@ -43,12 +43,15 @@ function startGame() {
         cells[i].style.removeProperty("background-color");
         cells[i].addEventListener('click', turnclick, false);
     }
+    document.getElementById("second").style.backgroundColor="#f9d56e"
+      document.getElementById("first").style.backgroundColor="#f9d56e";
 }
 
 function turnclick(square) {
     if(typeof board[square.target.id]=="number") {
+    if(document.getElementById("ai")){    
     turn(square.target.id, human)
-    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), ai);}   
+    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), ai);} }  
 }
 
 function turn(squareId, player) {
