@@ -42,12 +42,12 @@ function turnclicks(square){
     
     if((availSpot.length)%2 != 0) {
        
-        turn1(square.target.id, player1);
+        turn(square.target.id, player1);
       
     }
     else {
         
-        turn1(square.target.id, player2);
+        turn(square.target.id, player2);
     }
    
    }
@@ -55,11 +55,13 @@ function turnclicks(square){
 
 //h2h();
 function selectSym(sym){
-if(levell!=0) {
+document.getElementById("friend").style.backgroundColor="#f9d56e";
+//document.getElementById("ai").style.backgroundColor="#14b1ab";
+//if(levell!=0) {
         human = sym;
         ai = sym==='O' ? '✘' :'O';
     board = Array.from(Array(9).keys());   
-      
+if(levell!=0) {      
     if(human=='O')
     {
 
@@ -83,9 +85,9 @@ if(levell!=0) {
     document.getElementById("l2").disabled=true;
      document.getElementById("l3").disabled=true;
 
-  /*  if (ai === '✘') {
-      turn(bestSpot(), ai)
-  }*/
+   if (ai === '✘') {
+      turn(bestSpot(levell), ai);
+  }
 }
    document.querySelector(".endgame").style.display="none";
 
@@ -99,6 +101,8 @@ function startGame() {
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
         cells[i].removeEventListener("click", turnclicks, false)
+        cells[i].removeEventListener('click', turnclick, false);
+
     }
      document.getElementById("l3").style.backgroundColor="#f9d56e"
      document.getElementById("l2").style.backgroundColor="#f9d56e"
@@ -115,13 +119,21 @@ function startGame() {
      levell=0;
 }
 
+
+/*function turnclick1(square) {
+    if(typeof board[square.target.id]=="number") {   
+    turn1(square.target.id, player1)
+    if(!checkWin(board, player1) && !checkTie()) turn(bestSpot(), ai);}   
+}*/
+/*function turn1(squareId, player) {
+
 function turn1(squareId, player) {
     board[squareId] = player;
     document.getElementById(squareId).innerText = player;
     let gameWon = checkWin(board, player)
     if(gameWon) gameOver(gameWon)
-    checkTie1();    
-}
+    checkTie1();   
+}*/
 
 
 function turnclick(square) {
@@ -163,7 +175,7 @@ function gameOver(gameWon) {
     }
    if(gameWon.player==human || gameWon.player==ai){  
     declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); }
-    else{declareWin(gameWon.player==player1?"You Win!":"Friend wins!");}
+    else{declareWin(gameWon.player==player1?"X Wins!":"O Wins!");}
 }
 
 function declareWin(who) {
@@ -203,7 +215,7 @@ function levels(count)
 }
 
 function bestSpot(count) {
-    count=levell;
+    //count=levell;
     if(count==3) {
     return minimax(board, ai).index; }
     else if(count==1)
@@ -224,6 +236,7 @@ function checkTie()
         {
             cells[i].style.backgroundColor="LightGreen";
             cells[i].removeEventListener("click",turnclick,false);
+            cells[i].removeEventListener("click",turnclicks,false);
         }
         declareWin("Tie Game!")
         return true;
@@ -231,7 +244,7 @@ function checkTie()
     return false;    
 }
 
-function checkTie1()
+/*function checkTie1()
 {
     if(emptySpot().length==-1)
     {
@@ -244,7 +257,7 @@ function checkTie1()
         return true;
     }
     return false;    
-}
+}*/
 
 
 
