@@ -7,17 +7,22 @@
     </head>
     <body>
         <h1 id="heading">Tic-Tac-Toe</h1>
-        <div id="left"><h2>YOU</h2>
-        <h2>Vs</h2>
-        <div class="opposite(say)">
+        <div id="left"><p><strong>YOU VS:</strong></p>
     <button class="buttons" onclick="friend()" id="friend">Friend</button>
-    <button class="buttons"  id="ai">Robot</button>
-    </div>
+    
+    <div class = "levels(count)">
+        <p><strong>Choose Level To Play With AI:</strong></p>
+        <button class="buttons1" id="l1" onClick="levels(1)">level 1</button>
+         <button class="buttons1" id="l2" onClick="levels(2)">level 2</button>
+        <button class="buttons1" id="l3" onClick="levels(3)">level 3</button>
+        </div>
+    
     <div class = "selectSym">
-<h2>Play As:</h2>
+<p><strong>Play Vs AI As:</strong></p>
 <button class="buttons" id="first" onClick="selectSym('✘')">✘</button>
 <button class="buttons" id="second" onClick="selectSym('O')">O</button>
     </div>
+</div>
 </div>
         <div id ="right">
         <table>
@@ -40,7 +45,7 @@
         <div class="endgame">
             <div class="text"></div>
         </div>
-        <button onclick="startGame()" id="button">New Game</button>
+        <button onclick="startGame()" id="button" >New Game</button>
     </div>
         <script src="script.js"></script>
     </body>
