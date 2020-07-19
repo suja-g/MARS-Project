@@ -1,36 +1,67 @@
 let board;
 //var player;
-let human='O';
-let ai='✘';
+let human;
+let ai;
+let player1;
+let player2;
 //var ai;
 //var friend;
-//var temp;
+//var opponent;
 const wins=[
     [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]
 ]
 const cells=document.querySelectorAll(".cell");
 startGame();
+function friend(){
+   document.getElementById("friend").style.backgroundColor="#14b1ab";
+    player1='X'
+    player2='O'
+    document.querySelector(".endgame").style.display="none";
+    board = Array.from(Array(9).keys());
+    for(var i = 0; i < cells.length; i++)
+    {   cells[i].removeEventListener("click", turnclick, false); 
+        cells[i].innerText="";
+        cells[i].style.removeProperty("background-color"); 
+        cells[i].addEventListener('click', turnclicks, false);
+    } 
+}
+function turnclicks(square){
+   if(typeof board[square.target.id]=="number"){
+    var availSpot = emptySpot(board);
+    if((availSpot.length)%2 != 0){
+        turn(square.target.id, player1)
+    }else{
+        turn(square.target.id, player2)
+    }
+   }
+}
+
 //h2h();
 function selectSym(sym){
     human = sym;
-    ai = sym==='O' ? 'X' :'O';
-    if(human==='O')
+    ai = sym==='O' ? '✘' :'O';
+    board = Array.from(Array(9).keys());    
+    document.getElementById("friend").style.backgroundColor="#f9d56e";
+    if(human=='O')
     {
+
       document.getElementById("second").style.backgroundColor="#14b1ab";    
       document.getElementById("first").style.backgroundColor="#f9d56e"
     }
     else{
         document.getElementById("first").style.backgroundColor="#14b1ab";
         document.getElementById("second").style.backgroundColor="#f9d56e";
+    }   
+
+    for(var i = 0; i < cells.length; i++)
+    {   cells[i].removeEventListener("click", turnclicks, false);
+        cells[i].innerText="";
+        cells[i].style.removeProperty("background-color");
+        cells[i].addEventListener('click', turnclick, false);
     }
-    board = Array.from(Array(9).keys());
-    for (let i = 0; i < cells.length; i++) {
-      cells[i].addEventListener('click', turnclick, false);
-    }
-    if (ai === 'X') {
+    if (ai === '✘') {
       turn(bestSpot(), ai);
-      
-    }
+  }
    // document.querySelector('.selectSym').style.display = "none";
   }
 
@@ -41,17 +72,18 @@ function startGame() {
     { 
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
-        cells[i].addEventListener('click', turnclick, false);
+        cells[i].removeEventListener("click", turnclicks, false);
+       /*cells[i].addEventListener('click', turnclick, false);*/
     }
     document.getElementById("second").style.backgroundColor="#f9d56e"
+     document.getElementById("friend").style.backgroundColor="#f9d56e"
       document.getElementById("first").style.backgroundColor="#f9d56e";
 }
 
 function turnclick(square) {
-    if(typeof board[square.target.id]=="number") {
-    if(document.getElementById("ai")){    
+    if(typeof board[square.target.id]=="number") {   
     turn(square.target.id, human)
-    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), ai);} }  
+    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), ai);}   
 }
 
 function turn(squareId, player) {
@@ -59,6 +91,7 @@ function turn(squareId, player) {
     document.getElementById(squareId).innerText = player;
     let gameWon = checkWin(board, player)
     if(gameWon) gameOver(gameWon)
+    checkTie();    
 }
 
 function checkWin(boards, player) {
@@ -82,8 +115,11 @@ function gameOver(gameWon) {
     }
     for(var i=0; i<cells.length; i++) {
     cells[i].removeEventListener("click", turnclick, false);
+    cells[i].removeEventListener("click", turnclicks, false);
     }
-    declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); 
+   if(gameWon.player==human || gameWon.player==ai){  
+    declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); }
+    else{declareWin(gameWon.player==player1?"X wins!":"O wins!");}
 }
 
 function declareWin(who) {
@@ -96,6 +132,7 @@ function emptySpot() {
 }
 
 function bestSpot() {
+    
     return minimax(board, ai).index;
 }
 
