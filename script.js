@@ -40,11 +40,11 @@ function turnclicks(square){
     
     if((availSpot.length)%2 != 0){
        
-        turn1(square.target.id, player1);
+        turn(square.target.id, player1);
       
     }else{
         
-        turn1(square.target.id, player2);
+        turn(square.target.id, player2);
     }
    
    }
@@ -55,11 +55,11 @@ function selectSym(sym){
     
 document.getElementById("friend").style.backgroundColor="#f9d56e";
 //document.getElementById("ai").style.backgroundColor="#14b1ab";
-if(levell!=0) {
+//if(levell!=0) {
         human = sym;
         ai = sym==='O' ? '✘' :'O';
     board = Array.from(Array(9).keys());   
-      
+if(levell!=0) {      
     if(human=='O')
     {
 
@@ -99,7 +99,7 @@ function startGame() {
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
         cells[i].removeEventListener("click", turnclicks, false)
-       /*cells[i].addEventListener('click', turnclick, false);*/
+        cells[i].removeEventListener('click', turnclick, false);
     }
     document.getElementById("second").style.backgroundColor="#f9d56e"
      document.getElementById("friend").style.backgroundColor="#f9d56e"
@@ -116,13 +116,13 @@ function startGame() {
     turn1(square.target.id, player1)
     if(!checkWin(board, player1) && !checkTie()) turn(bestSpot(), ai);}   
 }*/
-function turn1(squareId, player) {
+/*function turn1(squareId, player) {
     board[squareId] = player;
     document.getElementById(squareId).innerText = player;
     let gameWon = checkWin(board, player)
     if(gameWon) gameOver(gameWon)
-    checkTie1();    
-}
+    checkTie1();   
+}*/
 
 
 function turnclick(square) {
@@ -199,7 +199,7 @@ function levels(count)
 }
 
 function bestSpot(count) {
-    count=levell;
+    //count=levell;
     if(count==3) {
     return minimax(board, ai).index; }
     else if(count==1)
@@ -220,6 +220,7 @@ function checkTie()
         {
             cells[i].style.backgroundColor="LightGreen";
             cells[i].removeEventListener("click",turnclick,false);
+            cells[i].removeEventListener("click",turnclicks,false);
         }
         declareWin("Tie Game!")
         return true;
@@ -227,7 +228,7 @@ function checkTie()
     return false;    
 }
 
-function checkTie1()
+/*function checkTie1()
 {
     if(emptySpot().length==-1)
     {
@@ -240,7 +241,7 @@ function checkTie1()
         return true;
     }
     return false;    
-}
+}*/
 
 //console.log(emptyS());
 
