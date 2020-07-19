@@ -15,12 +15,16 @@ const cells=document.querySelectorAll(".cell");
 startGame();
 function friend(){
    document.getElementById("friend").style.backgroundColor="#14b1ab";
-   document.getElementById("first").style.backgroundColor="#f9d56e";
-   //document.getElementById("ai").style.backgroundColor="#f9d56e";
+  /* document.getElementById("first").style.backgroundColor="#f9d56e";
    document.getElementById("second").style.backgroundColor="#f9d56e";
    document.getElementById("l1").style.backgroundColor="#f9d56e"
    document.getElementById("l2").style.backgroundColor="#f9d56e"
-    document.getElementById("l3").style.backgroundColor="#f9d56e";
+    document.getElementById("l3").style.backgroundColor="#f9d56e";*/
+    document.getElementById("first").disabled=true;
+   document.getElementById("second").disabled=true;
+   document.getElementById("l1").disabled=true;
+   document.getElementById("l2").disabled=true;
+    document.getElementById("l3").disabled=true;
     player1='X'
     player2='O'
     document.querySelector(".endgame").style.display="none";
@@ -34,15 +38,14 @@ function friend(){
 }
 function turnclicks(square){
    if(typeof board[square.target.id]=="number"){
-   // turn(square.target.id, player1)
-   
     var availSpot = emptySpot(board);
     
-    if((availSpot.length)%2 != 0){
+    if((availSpot.length)%2 != 0) {
        
         turn1(square.target.id, player1);
       
-    }else{
+    }
+    else {
         
         turn1(square.target.id, player2);
     }
@@ -52,9 +55,6 @@ function turnclicks(square){
 
 //h2h();
 function selectSym(sym){
-    
-document.getElementById("friend").style.backgroundColor="#f9d56e";
-//document.getElementById("ai").style.backgroundColor="#14b1ab";
 if(levell!=0) {
         human = sym;
         ai = sym==='O' ? '✘' :'O';
@@ -77,19 +77,19 @@ if(levell!=0) {
         cells[i].style.removeProperty("background-color");
         cells[i].addEventListener('click', turnclick, false)
     }
+    document.getElementById("first").disabled=true;
+    document.getElementById("second").disabled=true;
+    document.getElementById("l1").disabled=true;
+    document.getElementById("l2").disabled=true;
+     document.getElementById("l3").disabled=true;
 
   /*  if (ai === '✘') {
       turn(bestSpot(), ai)
   }*/
-   // document.querySelector('.selectSym').style.display = "none";
-   document.querySelector(".endgame").style.display="none";
 }
+   document.querySelector(".endgame").style.display="none";
+
   }
- /* function robo()
-  {
-    document.getElementById("ai").style.backgroundColor="#14b1ab";
-    document.getElementById("friend").style.backgroundColor="#f9d56e";
-  }*/
 
 function startGame() {
     document.querySelector(".endgame").style.display="none";
@@ -99,23 +99,22 @@ function startGame() {
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
         cells[i].removeEventListener("click", turnclicks, false)
-       /*cells[i].addEventListener('click', turnclick, false);*/
     }
-    document.getElementById("second").style.backgroundColor="#f9d56e"
+     document.getElementById("l3").style.backgroundColor="#f9d56e"
+     document.getElementById("l2").style.backgroundColor="#f9d56e"
+     document.getElementById("l1").style.backgroundColor="#f9d56e"
+     document.getElementById("second").style.backgroundColor="#f9d56e"
+     document.getElementById("first").style.backgroundColor="#f9d56e"
      document.getElementById("friend").style.backgroundColor="#f9d56e"
-      document.getElementById("first").style.backgroundColor="#f9d56e";
-      document.getElementById("l1").style.backgroundColor="#f9d56e"
-      document.getElementById("l2").style.backgroundColor="#f9d56e"
-       document.getElementById("l3").style.backgroundColor="#f9d56e";
-     // document.getElementById("ai").style.backgroundColor="#f9d56e";
+     document.getElementById("friend").disabled=false;
+       document.getElementById("first").disabled=false;
+       document.getElementById("second").disabled=false;
+       document.getElementById("l1").disabled=false;
+       document.getElementById("l2").disabled=false;
+        document.getElementById("l3").disabled=false;
      levell=0;
 }
 
-/*function turnclick1(square) {
-    if(typeof board[square.target.id]=="number") {   
-    turn1(square.target.id, player1)
-    if(!checkWin(board, player1) && !checkTie()) turn(bestSpot(), ai);}   
-}*/
 function turn1(squareId, player) {
     board[squareId] = player;
     document.getElementById(squareId).innerText = player;
@@ -178,6 +177,11 @@ function emptySpot() {
 
 function levels(count)
 {
+    document.getElementById("friend").disabled=true;
+    //document.getElementById("second").disabled=true;
+    //document.getElementById("l1").disabled=true;
+    //document.getElementById("l2").disabled=true;
+   //  document.getElementById("l3").disabled=true;
     levell=count;
     if(count==1)
     {
@@ -242,7 +246,7 @@ function checkTie1()
     return false;    
 }
 
-//console.log(emptyS());
+
 
 function minimax(newBoard, player) {
     var availSpots = emptySpot(newBoard);
@@ -269,9 +273,7 @@ function minimax(newBoard, player) {
      }else {
         var result=minimax(newBoard, ai);
         move.score=result.score;
-        //move.score=(minimax(newBoard,ai)).score;
     }
-   // board[id]=backUp;
    newBoard[availSpots[i]]=move.index;
     if ((player === ai && move.score === 10) || (player === human && move.score === -10))
       return move;
@@ -325,9 +327,7 @@ function level1(newBoard, player,counts) {
      }else {
         var result=minimax(newBoard, ai);
         move.score=result.score;
-        //move.score=(minimax(newBoard,ai)).score;
-    }
-   // board[id]=backUp;
+        }
    newBoard[availSpots[i]]=move.index;
     if ((player === ai && move.score === 10) || (player === human && move.score === -10))
       return move;
@@ -360,8 +360,15 @@ function level1(newBoard, player,counts) {
      choosen=moves[bestMove];
  }
  else{
+    if(moves[bestMove+1]) {
      
         choosen=moves[bestMove+1];
+     }
+     else if(moves[bestMove-1])
+     {
+         choosen=moves[bestMove-1];
+     }
+     else { choosen=moves[bestMove];}
      }
     }
     else{
@@ -370,8 +377,17 @@ function level1(newBoard, player,counts) {
      choosen=moves[bestMove];
  }
  else{
+    if(moves[bestMove+1]) {
      
         choosen=moves[bestMove+1];
+     }
+     else if(moves[bestMove-1])
+     {
+         choosen=moves[bestMove-1];
+     }
+     else {
+         choosen=moves[bestMove];
+     }
      }
     }
  
