@@ -4,7 +4,7 @@ let human;
 let ai;
 let player1;
 let player2;
-var levell;
+var levell=0;
 //var ai;
 //var friend;
 //var opponent;
@@ -18,6 +18,9 @@ function friend(){
    document.getElementById("first").style.backgroundColor="#f9d56e";
    //document.getElementById("ai").style.backgroundColor="#f9d56e";
    document.getElementById("second").style.backgroundColor="#f9d56e";
+   document.getElementById("l1").style.backgroundColor="#f9d56e"
+   document.getElementById("l2").style.backgroundColor="#f9d56e"
+    document.getElementById("l3").style.backgroundColor="#f9d56e";
     player1='X'
     player2='O'
     document.querySelector(".endgame").style.display="none";
@@ -52,6 +55,7 @@ function selectSym(sym){
     
 document.getElementById("friend").style.backgroundColor="#f9d56e";
 //document.getElementById("ai").style.backgroundColor="#14b1ab";
+if(levell!=0) {
         human = sym;
         ai = sym==='O' ? '✘' :'O';
     board = Array.from(Array(9).keys());   
@@ -79,6 +83,7 @@ document.getElementById("friend").style.backgroundColor="#f9d56e";
   }*/
    // document.querySelector('.selectSym').style.display = "none";
    document.querySelector(".endgame").style.display="none";
+}
   }
  /* function robo()
   {
@@ -103,6 +108,7 @@ function startGame() {
       document.getElementById("l2").style.backgroundColor="#f9d56e"
        document.getElementById("l3").style.backgroundColor="#f9d56e";
      // document.getElementById("ai").style.backgroundColor="#f9d56e";
+     levell=0;
 }
 
 /*function turnclick1(square) {
