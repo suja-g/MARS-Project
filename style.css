@@ -46,7 +46,7 @@ table tr td:last-child {
     display: none;
     width: 200px;
     top: 300px;
-    background-color: rgb(166, 91, 241, 0.8);
+    background-color: rgba(166, 91, 241, 0.8);
     position: absolute;
     margin-left: -14.5px;
     text-align: center;
@@ -61,7 +61,7 @@ table tr td:last-child {
     width: 200px;
     top: 510px;
     border: none;
-    background-color: rgb(166, 91, 241);
+    background-color: rgb(166, 91, 241); 
     position: absolute;
     left: 50%;
     margin-left: -110.5px;
@@ -80,10 +80,10 @@ table tr td:last-child {
     font-size: 5em;
     color: #CE0000;
     text-shadow: 3px 3px 4px black;
-}
+} 
 body {
     background-color: white;
-    font-family: "Comic Sans MS";
+    font-family: "Comic Sans MS";  
 }
 #right {
     
@@ -102,23 +102,29 @@ body {
     width: 450px;
     height: 420px;
     top: 200px;
-    background-color: rgba(126, 65, 187,0.8);
+    background-color: rgba(232, 80, 91, 1);
     position: absolute;
     margin-left: 100px;
     border-radius: 20px;
     font-family: "Comic Sans MS";
     font-size: 1.5em;
-    color: cornsilk;
+    color: #f3ecc2;
 }
 .buttons {
     width: 200px;
     height: 50px;
     border: none;
-    background-color: rgb(248, 85, 166);
+    background-color: #f9d56e;
     text-align: center;
     border-radius: 10px;
-    color: rgb(15, 15, 15);
+    color: rgb(15,15,15);
     font-size: 1em;
     font-family: "Comic Sans MS";
     cursor: pointer;
+}
+.buttons:hover{
+    color: rgb(240, 245, 242);
+}
+/*.hi span{
+    color: 126, 65, 187
 }

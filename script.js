@@ -1,7 +1,9 @@
 let board;
 //var player;
-let human='O';
-let ai='X';
+let human;
+let ai;
+let player1;
+let player2;
 //var ai;
 //var friend;
 //var opponent;
@@ -10,39 +12,55 @@ const wins=[
 ]
 const cells=document.querySelectorAll(".cell");
 startGame();
-/*function opposite(say) {
-    if(say==='ai') opponent=ai;
-    else opponent=human;
-    //selectSym(sym);
-}*/
+function friend(){
+   document.getElementById("friend").style.backgroundColor="#14b1ab";
+    player1='X'
+    player2='O'
+    document.querySelector(".endgame").style.display="none";
+    board = Array.from(Array(9).keys());
+    for(var i = 0; i < cells.length; i++)
+    {   cells[i].removeEventListener("click", turnclick, false); 
+        cells[i].innerText="";
+        cells[i].style.removeProperty("background-color"); 
+        cells[i].addEventListener('click', turnclicks, false);
+    } 
+}
+function turnclicks(square){
+   if(typeof board[square.target.id]=="number"){
+    var availSpot = emptySpot(board);
+    if((availSpot.length)%2 != 0){
+        turn(square.target.id, player1)
+    }else{
+        turn(square.target.id, player2)
+    }
+   }
+}
+
 //h2h();
 function selectSym(sym){
     human = sym;
-    ai = sym==='O' ? 'X' :'O';
-    board = Array.from(Array(9).keys());
-    
+    ai = sym==='O' ? '✘' :'O';
+    board = Array.from(Array(9).keys());    
+    document.getElementById("friend").style.backgroundColor="#f9d56e";
     if(human=='O')
     {
-      document.getElementById("second").style.backgroundColor="green";
-      document.getElementById("first").style.backgroundColor="rgb(248, 85, 166)";
-     
+
+      document.getElementById("second").style.backgroundColor="#14b1ab";    
+      document.getElementById("first").style.backgroundColor="#f9d56e"
     }
     else{
-        document.getElementById("first").style.backgroundColor="green";
-      document.getElementById("second").style.backgroundColor="rgb(248, 85, 166)";
+        document.getElementById("first").style.backgroundColor="#14b1ab";
+        document.getElementById("second").style.backgroundColor="#f9d56e";
+    }   
 
+    for(var i = 0; i < cells.length; i++)
+    {   cells[i].removeEventListener("click", turnclicks, false);
+        cells[i].innerText="";
+        cells[i].style.removeProperty("background-color");
+        cells[i].addEventListener('click', turnclick, false);
     }
-   
-   /*if (ai === 'X') {
-      
-    turn(bestSpot(),ai);
-   }*/
-   document.querySelector(".endgame").style.display="none";
-   for (let i = 0; i < cells.length; i++) {
-    cells[i].innerText="";
-    cells[i].style.removeProperty("background-color");
-    cells[i].addEventListener('click', turnclick, false);
-//if() {startGame();break;}
+    if (ai === '✘') {
+      turn(bestSpot(), ai);
   }
    // document.querySelector('.selectSym').style.display = "none";
   }
@@ -54,14 +72,16 @@ function startGame() {
     { 
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
-        //cells[i].addEventListener('click', turnclick, false);
+        cells[i].removeEventListener("click", turnclicks, false);
+       /*cells[i].addEventListener('click', turnclick, false);*/
     }
-    document.getElementById("second").style.backgroundColor="rgb(248, 85, 166)";
-      document.getElementById("first").style.backgroundColor="rgb(248, 85, 166)";
+    document.getElementById("second").style.backgroundColor="#f9d56e"
+     document.getElementById("friend").style.backgroundColor="#f9d56e"
+      document.getElementById("first").style.backgroundColor="#f9d56e";
 }
 
 function turnclick(square) {
-    if(typeof board[square.target.id]=="number") {
+    if(typeof board[square.target.id]=="number") {   
     turn(square.target.id, human)
     if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), ai);}   
 }
@@ -71,6 +91,7 @@ function turn(squareId, player) {
     document.getElementById(squareId).innerText = player;
     let gameWon = checkWin(board, player)
     if(gameWon) gameOver(gameWon)
+    checkTie();    
 }
 
 function checkWin(boards, player) {
@@ -94,8 +115,11 @@ function gameOver(gameWon) {
     }
     for(var i=0; i<cells.length; i++) {
     cells[i].removeEventListener("click", turnclick, false);
+    cells[i].removeEventListener("click", turnclicks, false);
     }
-    declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); 
+   if(gameWon.player==human || gameWon.player==ai){  
+    declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); }
+    else{declareWin(gameWon.player==player1?"X wins!":"O wins!");}
 }
 
 function declareWin(who) {
@@ -135,7 +159,7 @@ function minimax(newBoard, player) {
     if(checkWin(newBoard, human)) {
            return {score: -10};
      } else if(checkWin(newBoard, ai)) {
-           return {score: 20};
+           return {score: 10};
      } else if(availSpots.length===0) {
            return {score: 0};
      }
@@ -166,7 +190,7 @@ function minimax(newBoard, player) {
 }
  var bestMove;
  if(player===ai) {
-    var bestScore = -10000;
+    var bestScore = -100000;
     for (var i = 0; i < moves.length; i++) {
         if(moves[i].score>bestScore) {
                bestScore=moves[i].score;
@@ -174,7 +198,7 @@ function minimax(newBoard, player) {
         }
      }
  }else {
-    var bestScore = 10000;
+    var bestScore = 100000;
     for (var i = 0; i < moves.length; i++) {
         if(moves[i].score<bestScore) {
             bestScore = moves[i].score;
