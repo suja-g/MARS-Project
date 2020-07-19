@@ -4,6 +4,7 @@ let human;
 let ai;
 let player1;
 let player2;
+var levell;
 //var ai;
 //var friend;
 //var opponent;
@@ -98,6 +99,9 @@ function startGame() {
     document.getElementById("second").style.backgroundColor="#f9d56e"
      document.getElementById("friend").style.backgroundColor="#f9d56e"
       document.getElementById("first").style.backgroundColor="#f9d56e";
+      document.getElementById("l1").style.backgroundColor="#f9d56e"
+      document.getElementById("l2").style.backgroundColor="#f9d56e"
+       document.getElementById("l3").style.backgroundColor="#f9d56e";
      // document.getElementById("ai").style.backgroundColor="#f9d56e";
 }
 
@@ -118,7 +122,7 @@ function turn1(squareId, player) {
 function turnclick(square) {
     if(typeof board[square.target.id]=="number") {   
     turn(square.target.id, human)
-    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(), ai);}   
+    if(!checkWin(board, human) && !checkTie()) turn(bestSpot(levell), ai);}   
 }
 
 function turn(squareId, player) {
@@ -166,9 +170,40 @@ function emptySpot() {
     return board.filter(s => typeof s=="number");
 }
 
-function bestSpot() {
-    
-    return minimax(board, ai).index;
+function levels(count)
+{
+    levell=count;
+    if(count==1)
+    {
+        document.getElementById("l1").style.backgroundColor="#14b1ab"
+     document.getElementById("l2").style.backgroundColor="#f9d56e"
+      document.getElementById("l3").style.backgroundColor="#f9d56e";
+    }
+    else if(count==2)
+    {
+        document.getElementById("l1").style.backgroundColor="#f9d56e"
+        document.getElementById("l2").style.backgroundColor="#14b1ab"
+         document.getElementById("l3").style.backgroundColor="#f9d56e";
+    }
+    else if(count==3){
+        document.getElementById("l1").style.backgroundColor="#f9d56e"
+        document.getElementById("l2").style.backgroundColor="#f9d56e"
+         document.getElementById("l3").style.backgroundColor="#14b1ab";
+    }
+}
+
+function bestSpot(count) {
+    count=levell;
+    if(count==3) {
+    return minimax(board, ai).index; }
+    else if(count==1)
+    {
+        return level1(board, ai,1).index;
+    }
+    else if(count==2)
+    {
+        return level1(board,ai,2).index;
+    }
 }
 
 function checkTie()
@@ -257,5 +292,83 @@ function minimax(newBoard, player) {
     }
  }
  return moves[bestMove];
+}
+
+function level1(newBoard, player,counts) {
+    var availSpots = emptySpot(newBoard);
+    
+    if(checkWin(newBoard, human)) {
+           return {score: -10};
+     } else if(checkWin(newBoard, ai)) {
+           return {score: 10};
+     } else if(availSpots.length===0) {
+           return {score: 0};
+     }
+     
+     var moves=[];
+     for(var i=0; i<availSpots.length; i++)
+     {
+        var move={};     
+        move.index= newBoard[availSpots[i]];
+        newBoard[availSpots[i]]=player;
+
+     if(player==ai) {
+        var result = minimax(newBoard, human);
+        move.score = result.score;
+        
+     }else {
+        var result=minimax(newBoard, ai);
+        move.score=result.score;
+        //move.score=(minimax(newBoard,ai)).score;
+    }
+   // board[id]=backUp;
+   newBoard[availSpots[i]]=move.index;
+    if ((player === ai && move.score === 10) || (player === human && move.score === -10))
+      return move;
+    else 
+      moves.push(move);
+    
+}
+ var bestMove;
+ if(player===ai) {
+    var bestScore = -100000;
+    for (var i = 0; i < moves.length; i++) {
+        if(moves[i].score>bestScore) {
+               bestScore=moves[i].score;
+               bestMove=i;
+        }
+     }
+ }else {
+    var bestScore = 100000;
+    for (var i = 0; i < moves.length; i++) {
+        if(moves[i].score<bestScore) {
+            bestScore = moves[i].score;
+            bestMove = i;
+        }    
+    }
+ }
+ var choosen;
+ if(counts==1 ) {
+ if(Math.random()*100<=20)
+ {
+     choosen=moves[bestMove];
+ }
+ else{
+     
+        choosen=moves[bestMove+1];
+     }
+    }
+    else{
+        if(Math.random()*100<=70)
+ {
+     choosen=moves[bestMove];
+ }
+ else{
+     
+        choosen=moves[bestMove+1];
+     }
+    }
+ 
+ return choosen;
 }
 
