@@ -14,6 +14,9 @@ const cells=document.querySelectorAll(".cell");
 startGame();
 function friend(){
    document.getElementById("friend").style.backgroundColor="#14b1ab";
+   document.getElementById("first").style.backgroundColor="#f9d56e";
+   //document.getElementById("ai").style.backgroundColor="#f9d56e";
+   document.getElementById("second").style.backgroundColor="#f9d56e";
     player1='X'
     player2='O'
     document.querySelector(".endgame").style.display="none";
@@ -27,26 +30,36 @@ function friend(){
 }
 function turnclicks(square){
    if(typeof board[square.target.id]=="number"){
+   // turn(square.target.id, player1)
+   
     var availSpot = emptySpot(board);
+    
     if((availSpot.length)%2 != 0){
-        turn(square.target.id, player1)
+       
+        turn1(square.target.id, player1);
+      
     }else{
-        turn(square.target.id, player2)
+        
+        turn1(square.target.id, player2);
     }
+   
    }
 }
 
 //h2h();
 function selectSym(sym){
-    human = sym;
-    ai = sym==='O' ? '✘' :'O';
-    board = Array.from(Array(9).keys());    
-    document.getElementById("friend").style.backgroundColor="#f9d56e";
+    
+document.getElementById("friend").style.backgroundColor="#f9d56e";
+//document.getElementById("ai").style.backgroundColor="#14b1ab";
+        human = sym;
+        ai = sym==='O' ? '✘' :'O';
+    board = Array.from(Array(9).keys());   
+      
     if(human=='O')
     {
 
       document.getElementById("second").style.backgroundColor="#14b1ab";    
-      document.getElementById("first").style.backgroundColor="#f9d56e"
+      document.getElementById("first").style.backgroundColor="#f9d56e";
     }
     else{
         document.getElementById("first").style.backgroundColor="#14b1ab";
@@ -57,13 +70,20 @@ function selectSym(sym){
     {   cells[i].removeEventListener("click", turnclicks, false);
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
-        cells[i].addEventListener('click', turnclick, false);
+        cells[i].addEventListener('click', turnclick, false)
     }
-    if (ai === '✘') {
-      turn(bestSpot(), ai);
-  }
+
+  /*  if (ai === '✘') {
+      turn(bestSpot(), ai)
+  }*/
    // document.querySelector('.selectSym').style.display = "none";
+   document.querySelector(".endgame").style.display="none";
   }
+ /* function robo()
+  {
+    document.getElementById("ai").style.backgroundColor="#14b1ab";
+    document.getElementById("friend").style.backgroundColor="#f9d56e";
+  }*/
 
 function startGame() {
     document.querySelector(".endgame").style.display="none";
@@ -72,13 +92,28 @@ function startGame() {
     { 
         cells[i].innerText="";
         cells[i].style.removeProperty("background-color");
-        cells[i].removeEventListener("click", turnclicks, false);
+        cells[i].removeEventListener("click", turnclicks, false)
        /*cells[i].addEventListener('click', turnclick, false);*/
     }
     document.getElementById("second").style.backgroundColor="#f9d56e"
      document.getElementById("friend").style.backgroundColor="#f9d56e"
       document.getElementById("first").style.backgroundColor="#f9d56e";
+     // document.getElementById("ai").style.backgroundColor="#f9d56e";
 }
+
+/*function turnclick1(square) {
+    if(typeof board[square.target.id]=="number") {   
+    turn1(square.target.id, player1)
+    if(!checkWin(board, player1) && !checkTie()) turn(bestSpot(), ai);}   
+}*/
+function turn1(squareId, player) {
+    board[squareId] = player;
+    document.getElementById(squareId).innerText = player;
+    let gameWon = checkWin(board, player)
+    if(gameWon) gameOver(gameWon)
+    checkTie1();    
+}
+
 
 function turnclick(square) {
     if(typeof board[square.target.id]=="number") {   
@@ -119,7 +154,7 @@ function gameOver(gameWon) {
     }
    if(gameWon.player==human || gameWon.player==ai){  
     declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); }
-    else{declareWin(gameWon.player==player1?"X wins!":"O wins!");}
+    else{declareWin(gameWon.player==player1?"You Win!":"Friend wins!");}
 }
 
 function declareWin(who) {
@@ -139,6 +174,21 @@ function bestSpot() {
 function checkTie()
 {
     if(emptySpot().length==0)
+    {
+        for(var i=0; i<cells.length; i++)
+        {
+            cells[i].style.backgroundColor="LightGreen";
+            cells[i].removeEventListener("click",turnclick,false);
+        }
+        declareWin("Tie Game!")
+        return true;
+    }
+    return false;    
+}
+
+function checkTie1()
+{
+    if(emptySpot().length==-1)
     {
         for(var i=0; i<cells.length; i++)
         {
