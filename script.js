@@ -146,8 +146,8 @@ function turn(squareId, player) {
     board[squareId] = player;
     document.getElementById(squareId).innerText = player;
     let gameWon = checkWin(board, player)
-    if(gameWon) gameOver(gameWon)
-    checkTie();    
+    if(gameWon){ gameOver(gameWon)}
+     else{checkTie();}    
 }
 
 function checkWin(boards, player) {
