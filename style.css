@@ -77,8 +77,8 @@ table tr td:last-child {
 #heading {
     text-align: center;
     font-family: "Comic Sans MS";
-    font-size: 5em;
-    color: #CE0000;
+    font-size: 5em;;
+    color: #020b12;
     text-shadow: 3px 3px 4px black;
 } 
 body {
@@ -143,6 +143,5 @@ body {
 #button:hover {
     color:black;
 }
-/*.hi span{
-    color: 126, 65, 187
-}
+#heading span{
+    color: #e70404;}
