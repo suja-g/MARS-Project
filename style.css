@@ -16,7 +16,7 @@ body{
 
 #heading span{
     color: #009e96;
- text-shadow: 2px 4px 4px white;}
+ text-shadow: 2px 2px 3px white;}
 	
 #heading {
     text-align: center;
@@ -25,7 +25,8 @@ body{
     font-family: "Comic Sans MS";
     font-size: 5em;
     color: #ffd042;
-   
+   background-color: rgb(15,15,15,0.9);
+   text-shadow: 2px 2px 2px rgb(250, 217, 31);
 } 
 .thecard{
 	position: absolute;
