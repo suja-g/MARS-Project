@@ -1,25 +1,21 @@
 let board;
-//var player;
 let human;
 let ai;
 let player1;
 let player2;
 var levell=0;
-//var ai;
-//var friend;
-//var opponent;
 const wins=[
     [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]
 ]
 const cells=document.querySelectorAll(".cell");
+
+
 startGame();
+
+
 function friend(){
    document.getElementById("friend").style.backgroundColor="#14b1ab";
-  /* document.getElementById("first").style.backgroundColor="#f9d56e";
-   document.getElementById("second").style.backgroundColor="#f9d56e";
-   document.getElementById("l1").style.backgroundColor="#f9d56e"
-   document.getElementById("l2").style.backgroundColor="#f9d56e"
-    document.getElementById("l3").style.backgroundColor="#f9d56e";*/
+   document.getElementById("cards").style.transform= "rotateY(180deg)"
     document.getElementById("first").disabled=true;
    document.getElementById("second").disabled=true;
    document.getElementById("l1").disabled=true;
@@ -36,32 +32,26 @@ function friend(){
         cells[i].addEventListener('click', turnclicks, false);
     } 
 }
+
 function turnclicks(square){
    if(typeof board[square.target.id]=="number"){
     var availSpot = emptySpot(board);
     
-    if((availSpot.length)%2 != 0) {
-       
+    if((availSpot.length)%2 != 0) {   
         turn(square.target.id, player1);
-      
-    }
-    else {
-        
+    }else {
         turn(square.target.id, player2);
-    }
-   
+    }  
    }
 }
 
-//h2h();
+
 function selectSym(sym){
-document.getElementById("friend").style.backgroundColor="#f9d56e";
-//document.getElementById("ai").style.backgroundColor="#14b1ab";
-//if(levell!=0) {
+     document.getElementById("friend").style.backgroundColor="#f9d56e";   
         human = sym;
         ai = sym==='O' ? '✘' :'O';
     board = Array.from(Array(9).keys());   
-if(levell!=0) {      
+if(levell!=0) {   document.getElementById("cards").style.transform= "rotateY(180deg)";   
     if(human=='O')
     {
 
@@ -116,25 +106,13 @@ function startGame() {
        document.getElementById("l1").disabled=false;
        document.getElementById("l2").disabled=false;
         document.getElementById("l3").disabled=false;
+        
      levell=0;
 }
-
-
-/*function turnclick1(square) {
-    if(typeof board[square.target.id]=="number") {   
-    turn1(square.target.id, player1)
-    if(!checkWin(board, player1) && !checkTie()) turn(bestSpot(), ai);}   
-}*/
-/*function turn1(squareId, player) {
-
-function turn1(squareId, player) {
-    board[squareId] = player;
-    document.getElementById(squareId).innerText = player;
-    let gameWon = checkWin(board, player)
-    if(gameWon) gameOver(gameWon)
-    checkTie1();   
-}*/
-
+function newGame(){
+     document.getElementById("cards").style.transform= "rotateY(360deg)";
+     startGame();
+}
 
 function turnclick(square) {
     if(typeof board[square.target.id]=="number") {   
@@ -190,10 +168,6 @@ function emptySpot() {
 function levels(count)
 {
     document.getElementById("friend").disabled=true;
-    //document.getElementById("second").disabled=true;
-    //document.getElementById("l1").disabled=true;
-    //document.getElementById("l2").disabled=true;
-   //  document.getElementById("l3").disabled=true;
     levell=count;
     if(count==1)
     {
@@ -215,7 +189,6 @@ function levels(count)
 }
 
 function bestSpot(count) {
-    //count=levell;
     if(count==3) {
     return minimax(board, ai).index; }
     else if(count==1)
@@ -243,23 +216,6 @@ function checkTie()
     }
     return false;    
 }
-
-/*function checkTie1()
-{
-    if(emptySpot().length==-1)
-    {
-        for(var i=0; i<cells.length; i++)
-        {
-            cells[i].style.backgroundColor="LightGreen";
-            cells[i].removeEventListener("click",turnclick,false);
-        }
-        declareWin("Tie Game!")
-        return true;
-    }
-    return false;    
-}*/
-
-
 
 function minimax(newBoard, player) {
     var availSpots = emptySpot(newBoard);
