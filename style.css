@@ -15,7 +15,7 @@ body{
 }
 
 #heading span{
-    color: #009e91;
+    color: #009e96;
  text-shadow: 2px 4px 4px white;}
 	
 #heading {
@@ -33,7 +33,7 @@ body{
 	height: 100%;
 	transform-style: preserve-3d;
 	transition: all 0.5s ease;
-	background: rgba(232, 80, 91, 1);
+	background: rgba(232, 80, 91, 0.8);
 	border-radius: 20px;
 }
 .thefront{
@@ -41,7 +41,7 @@ body{
 	width: 100%;
 	height: 100%;
 	backface-visibility: hidden;
-	background: rgba(232, 80, 91, 1);
+	background: rgba(232, 80, 91, 0.8);
 	text-align: center;
 	font-family: "Comic Sans MS";
     font-size: 1.5em;
@@ -84,7 +84,7 @@ body{
 	width: 100%;
 	height: 100%;
 	backface-visibility: hidden;
-	background: rgba(232, 80, 91, 1);
+	background: rgba(232, 80, 91, 0.9);
 	color: grey;
     transform: rotateY(180deg); 
 	text-align: center;
@@ -162,6 +162,7 @@ table tr td:last-child {
     border-radius: 20px;
     
 }
+
 #button {
     width: 200px;
     top: 320px;
@@ -181,6 +182,6 @@ table tr td:last-child {
 #button:hover {
     color:black;
 }
-@media(min-width: 300px , max-width: 400px){
+@media(min-width: 300px) and (max-width: 400px){
 	#container{width: 50%;}
 }
