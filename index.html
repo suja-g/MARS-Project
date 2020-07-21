@@ -1,13 +1,17 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="style.css">
-        <title>
-            Tic Tac Toe game
-        </title>
-    </head>
-    <body>
-        <h1 id="heading">Tic<span>Tac</span>Toe</h1>
-        <div id="left"><p><strong>YOU VS:</strong></p>
+<head> <link rel="stylesheet" href="style.css"> 
+       <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+       <title>Martians- TicTacToe</title> 
+</head>
+<body>
+   <div id="bg"></div>
+   <h1 id="heading">Tic<span>Tac</span>Toe</h1>
+   <div class="maincontainer" id="container">
+   	
+   	<div class="thecard" id="cards">
+   		 
+   	<div class="thefront"><div id="left"><p><strong>YOU VS:</strong></p>
     <button class="buttons" onclick="friend()" id="friend">Friend</button>
     
     <div class = "levels(count)">
@@ -24,7 +28,8 @@
     </div>
 </div>
 </div>
-        <div id ="right">
+    <div class="theback">
+    	<div id ="right">
         <table id="table">
             <tr>
                 <td class="cell" id="0"></td>
@@ -45,8 +50,12 @@
         <div class="endgame">
             <div class="text"></div>
         </div>
-        <button onclick="startGame()" id="button" >New Game</button>
+        <button onclick="newGame()" id="button" >New Game</button>
     </div>
-        <script src="script.js"></script>
-    </body>
+    </div> 
+   	
+   	</div>
+   </div>
+   <script src="script.js"></script>
+</body>
 </html>
