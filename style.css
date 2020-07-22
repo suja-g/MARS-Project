@@ -189,6 +189,7 @@ table tr td:last-child {
     color:black;
 }
 
+
 #hint{
     width: 30px;
     transition: 0.4s;
@@ -205,20 +206,9 @@ table tr td:last-child {
     background-color: rgba(232, 80, 91, 0.8);
     background-size: 30px 50px;
 }
-/*@media(min-width: 300px) and (max-width: 400px){
-	#container{width: 70%;}
-    .buttons{ width: 50%;
-             font-size: 90% }
-    .buttons1{width: 50%;
-        font-size: 90%}
-    #button{width: 90%;
-        font-size: 90%}
-    
-   
 
-    #heading{width: 40%}
 
-}*/
+
 
 
 
