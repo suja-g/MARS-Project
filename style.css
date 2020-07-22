@@ -169,35 +169,46 @@ table tr td:last-child {
 }
 
 #button {
-    width: 200px;
+    width: 180px;
     top: 320px;
     border: none;
     background-color: rgb(166, 91, 241); 
     position: absolute;
     left: 50%;
-    margin-left: -190px; 
+    margin-left: -210px; 
     padding-bottom: 10px;
     text-align: center;
     border-radius: 20px;
     color: white;
-    font-size: 2em;
+
+    font-size: 1.7em;
     font-family: myFirstFont;
     cursor: pointer;
 }
 #button:hover {
     color:black;
 }
-/*@media(min-width: 300px) and (max-width: 400px){
-	#container{width: 70%;}
-    .buttons{ width: 50%;
-             font-size: 90% }
-    .buttons1{width: 50%;
-        font-size: 90%}
-    #button{width: 90%;
-        font-size: 90%}
-    
-   
 
-    #heading{width: 40%}
 
-}*/
+#hint{
+    width: 30px;
+    transition: 0.4s;
+    margin-top: 15px; 
+   height: 50px; 
+   background-image: url("bulb.png") ;
+   margin-left: 85px;
+   cursor: pointer;
+   border: none;
+   outline: none;
+   background-repeat: no-repeat;
+    background-position: 0% 0%; 
+    background-size: cover;
+    background-color: rgba(232, 80, 91, 0.8);
+    background-size: 30px 50px;
+}
+
+
+
+
+
+
