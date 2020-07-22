@@ -13,7 +13,7 @@ const cells=document.querySelectorAll(".cell");
 
 startGame();
 
-
+//Human_to_friend game code
 
 function friend(){
     
@@ -25,7 +25,8 @@ function friend(){
    document.getElementById("l1").disabled=true;
    document.getElementById("l2").disabled=true;
     document.getElementById("l3").disabled=true;
-   player1='X'
+
+    player1='X'
     player2='O'
     document.querySelector(".endgame").style.display="none";
     board = Array.from(Array(9).keys());
@@ -36,7 +37,7 @@ function friend(){
         cells[i].addEventListener('click', turnclicks, false);
     } 
 }
-
+//turnclicks function for human to friend 
 function turnclicks(square){
   
    if(typeof board[square.target.id]=="number"){
@@ -49,7 +50,7 @@ function turnclicks(square){
    }
 }
 
-
+//Function for selecting 'X' or 'O' which is only applicable after selecting levels section
 function selectSym(sym){
      document.getElementById("friend").style.backgroundColor="#f9d56e"; 
      document.getElementById("hint").style.visibility="visible";
@@ -82,6 +83,7 @@ if(levell!=0) {   document.getElementById("cards").style.transform= "rotateY(180
     document.getElementById("l2").disabled=true;
      document.getElementById("l3").disabled=true;
 
+
    if (ai === '✘') {
       turn(bestSpot(levell), ai);
   }
@@ -90,6 +92,7 @@ if(levell!=0) {   document.getElementById("cards").style.transform= "rotateY(180
 
   }
 
+  //Function to start the game
 function startGame() {
     document.querySelector(".endgame").style.display="none";
     board = Array.from(Array(9).keys());
@@ -116,13 +119,14 @@ function startGame() {
         document.getElementById("hint").style.visibility="hidden";
      levell=0;
 }
+//Function to start a new game
 function newGame(){
     
      document.getElementById("cards").style.transform= "rotateY(360deg)";
      document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
      startGame();
 }
-
+//turnclick Function to take human input and return ai input in human vs ai part 
 function turnclick(square) {
     document.getElementById(hintindex).style.backgroundColor = "black";
     document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
@@ -130,7 +134,7 @@ function turnclick(square) {
     turn(square.target.id, human)
     if(!checkWin(board, human) && !checkTie()) turn(bestSpot(levell), ai);}   
 }
-
+//turn function to access turns and check if game is won or not
 function turn(squareId, player) {
     board[squareId] = player;
     document.getElementById(squareId).innerText = player;
@@ -138,7 +142,7 @@ function turn(squareId, player) {
     if(gameWon){ gameOver(gameWon)}
      else{checkTie();}    
 }
-
+//checkwin function checks if game is won or not
 function checkWin(boards, player) {
     let plays = boards.reduce((a, e, i) => 
             (e === player)? a.concat(i):a , []);
@@ -151,7 +155,7 @@ function checkWin(boards, player) {
     }
     return gameWon;
 }
-
+//gameOver function is to check if game is over and pop out the result
 function gameOver(gameWon) {
     for (let index of wins[gameWon.index]) 
     {
@@ -169,16 +173,16 @@ function gameOver(gameWon) {
     document.getElementById("hint").disabled=true;}
   
 }
-
+//declareWin function checks if win is declared or not
 function declareWin(who) {
         document.querySelector(".endgame").style.display="block";
         document.querySelector(".endgame .text").innerText=who;
 }
-
+//emptySpot function checks the empty spot available in the board 
 function emptySpot() {
     return board.filter(s => typeof s=="number");
 }
-
+//levels function to access and style the input of difficulty of the game
 function levels(count)
 {
     levell=count;
@@ -200,7 +204,7 @@ function levels(count)
          document.getElementById("l3").style.backgroundColor="#14b1ab";
     }
 }
-
+//bestSpot function will return index of the board from ai side according to the levels
 function bestSpot(count) {
     if(count==3) {
     return minimax(board, ai).index; }
@@ -213,7 +217,7 @@ function bestSpot(count) {
         return level1(board,ai,2).index;
     }
 }
-
+//checkTie function will check if tie situation is happening in game or not
 function checkTie()
 {
     if(emptySpot().length==0)
@@ -229,7 +233,7 @@ function checkTie()
     }
     return false;    
 }
-
+//minimax function takes the input of the user and assumes the optimal move of human and return the index for bestmove from ai side
 function minimax(newBoard, player) {
     var availSpots = emptySpot(newBoard);
     
@@ -283,7 +287,7 @@ function minimax(newBoard, player) {
  }
  return moves[bestMove];
 }
-
+//level1 function is for level 1 and 2 . It declares that the ai plays partially optimal according to the level.
 function level1(newBoard, player,counts) {
     var availSpots = emptySpot(newBoard);
     
@@ -375,6 +379,7 @@ function level1(newBoard, player,counts) {
  
  return choosen;
 }
+//hint function is for highlighting suggestion of next move for human when playing against ai.
 function hint(){
     if(emptySpot().length!=9 && !checkTie()) {
     document.getElementById("hint").style.backgroundImage = "url(bulbon.png)";
