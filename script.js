@@ -14,6 +14,7 @@ const cells=document.querySelectorAll(".cell");
 startGame();
 
 //Human_to_friend game code
+
 function friend(){
     
     document.getElementById("button").style.marginLeft= "-180px";
@@ -24,6 +25,7 @@ function friend(){
    document.getElementById("l1").disabled=true;
    document.getElementById("l2").disabled=true;
     document.getElementById("l3").disabled=true;
+
     player1='X'
     player2='O'
     document.querySelector(".endgame").style.display="none";
@@ -81,6 +83,10 @@ if(levell!=0) {   document.getElementById("cards").style.transform= "rotateY(180
     document.getElementById("l2").disabled=true;
      document.getElementById("l3").disabled=true;
 
+
+   if (ai === '✘') {
+      turn(bestSpot(levell), ai);
+  }
 }
    document.querySelector(".endgame").style.display="none";
 
@@ -111,9 +117,6 @@ function startGame() {
        document.getElementById("l2").disabled=false;
         document.getElementById("l3").disabled=false;
         document.getElementById("hint").style.visibility="hidden";
-       
-      
-        
      levell=0;
 }
 //Function to start a new game
@@ -378,7 +381,7 @@ function level1(newBoard, player,counts) {
 }
 //hint function is for highlighting suggestion of next move for human when playing against ai.
 function hint(){
-    if(emptySpot().length!=0&&emptySpot().length!=9&&!checkTie()) {
+    if(emptySpot().length!=9 && !checkTie()) {
     document.getElementById("hint").style.backgroundImage = "url(bulbon.png)";
      hintindex= minimax(board, human).index;
     document.getElementById(hintindex).style.backgroundColor="#f4ce10";
