@@ -183,6 +183,10 @@ table tr td:last-child {
 #button:hover {
     color:black;
 }
+@font-face{
+    font-family: "Comic Sans MS"
+    src: url(comicz.ttf);
+}
 /*@media(min-width: 300px) and (max-width: 400px){
 	#container{width: 70%;}
     .buttons{ width: 50%;
@@ -197,7 +201,6 @@ table tr td:last-child {
     #heading{width: 40%}
 
 }*/
-@font-face{
-    font-family: "Comic Sans MS"
-    src: url(comicz.ttf);
-}
+
+
+
