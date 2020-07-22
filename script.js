@@ -21,6 +21,7 @@ function friend(){
    document.getElementById("l1").disabled=true;
    document.getElementById("l2").disabled=true;
     document.getElementById("l3").disabled=true;
+
     player1='X'
     player2='O'
     document.querySelector(".endgame").style.display="none";
@@ -167,7 +168,7 @@ function emptySpot() {
 
 function levels(count)
 {
-    document.getElementById("friend").disabled=true;
+    
     levell=count;
     if(count==1)
     {
