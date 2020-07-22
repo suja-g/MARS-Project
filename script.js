@@ -376,7 +376,7 @@ function level1(newBoard, player,counts) {
  return choosen;
 }
 function hint(){
-    if(emptySpot().length!=9 && !checkTie()) {
+    if(emptySpot().length!=0 && !checkTie()) {
     document.getElementById("hint").style.backgroundImage = "url(bulbon.png)";
      hintindex= minimax(board, human).index;
     document.getElementById(hintindex).style.backgroundColor="#f4ce10";
