@@ -3,6 +3,7 @@ let human;
 let ai;
 let player1;
 let player2;
+let hintindex;
 var levell=0;
 const wins=[
     [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]
@@ -14,6 +15,7 @@ startGame();
 
 
 function friend(){
+    
    document.getElementById("friend").style.backgroundColor="#14b1ab";
    document.getElementById("cards").style.transform= "rotateY(180deg)"
     document.getElementById("first").disabled=true;
@@ -35,9 +37,10 @@ function friend(){
 }
 
 function turnclicks(square){
+   document.getElementById(hintindex).style.backgroundColor= "black";
+    document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
    if(typeof board[square.target.id]=="number"){
     var availSpot = emptySpot(board);
-    
     if((availSpot.length)%2 != 0) {   
         turn(square.target.id, player1);
     }else {
@@ -48,7 +51,8 @@ function turnclicks(square){
 
 
 function selectSym(sym){
-     document.getElementById("friend").style.backgroundColor="#f9d56e";   
+     document.getElementById("friend").style.backgroundColor="#f9d56e"; 
+      
         human = sym;
         ai = sym==='O' ? '✘' :'O';
     board = Array.from(Array(9).keys());   
@@ -112,10 +116,13 @@ function startGame() {
 }
 function newGame(){
      document.getElementById("cards").style.transform= "rotateY(360deg)";
+     document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
      startGame();
 }
 
 function turnclick(square) {
+    document.getElementById(hintindex).style.backgroundColor= "black";
+    document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
     if(typeof board[square.target.id]=="number") {   
     turn(square.target.id, human)
     if(!checkWin(board, human) && !checkTie()) turn(bestSpot(levell), ai);}   
@@ -363,4 +370,10 @@ function level1(newBoard, player,counts) {
  
  return choosen;
 }
+function hint(){
+    document.getElementById("hint").style.backgroundImage = "url(bulbon.png)";
+     hintindex= minimax(board, human).index;
+    document.getElementById(hintindex).style.backgroundColor="#f4ce10";
+}
+
 
