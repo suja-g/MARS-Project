@@ -125,9 +125,8 @@ function newGame(){
 }
 //turnclick Function to take human input and return ai input in human vs ai part 
 function turnclick(square) {
-    if(hintindex!=0) {
     document.getElementById(hintindex).style.backgroundColor = "black";
-    document.getElementById("hint").style.backgroundImage = "url(bulb.png)";}
+    document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
     if(typeof board[square.target.id]=="number") {   
     turn(square.target.id, human)
     if(!checkWin(board, human) && !checkTie()) turn(bestSpot(levell), ai);}   
