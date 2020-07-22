@@ -3,7 +3,7 @@ let human;
 let ai;
 let player1;
 let player2;
-let hintindex;
+let hintindex=0;
 var levell=0;
 const wins=[
     [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]
@@ -14,7 +14,10 @@ const cells=document.querySelectorAll(".cell");
 startGame();
 
 
-function friend(){ 
+
+function friend(){
+    
+    document.getElementById("button").style.marginLeft= "-180px";
    document.getElementById("friend").style.backgroundColor="#14b1ab";
    document.getElementById("cards").style.transform= "rotateY(180deg)"
     document.getElementById("first").disabled=true;
@@ -22,8 +25,7 @@ function friend(){
    document.getElementById("l1").disabled=true;
    document.getElementById("l2").disabled=true;
     document.getElementById("l3").disabled=true;
-
-    player1='X'
+   player1='X'
     player2='O'
     document.querySelector(".endgame").style.display="none";
     board = Array.from(Array(9).keys());
@@ -36,8 +38,7 @@ function friend(){
 }
 
 function turnclicks(square){
-   document.getElementById(hintindex).style.backgroundColor= "black";
-    document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
+  
    if(typeof board[square.target.id]=="number"){
     var availSpot = emptySpot(board);
     if((availSpot.length)%2 != 0) {   
@@ -51,7 +52,9 @@ function turnclicks(square){
 
 function selectSym(sym){
      document.getElementById("friend").style.backgroundColor="#f9d56e"; 
-      
+     document.getElementById("hint").style.visibility="visible";
+     document.getElementById("hint").disabled=false;
+     document.getElementById("button").style.marginLeft= "-210px";
         human = sym;
         ai = sym==='O' ? '✘' :'O';
     board = Array.from(Array(9).keys());   
@@ -110,17 +113,18 @@ function startGame() {
        document.getElementById("l1").disabled=false;
        document.getElementById("l2").disabled=false;
         document.getElementById("l3").disabled=false;
-        document.getElementById("hint").disabled=false;
+        document.getElementById("hint").style.visibility="hidden";
      levell=0;
 }
 function newGame(){
+    
      document.getElementById("cards").style.transform= "rotateY(360deg)";
      document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
      startGame();
 }
 
 function turnclick(square) {
-    document.getElementById(hintindex).style.backgroundColor= "black";
+    document.getElementById(hintindex).style.backgroundColor = "black";
     document.getElementById("hint").style.backgroundImage = "url(bulb.png)";
     if(typeof board[square.target.id]=="number") {   
     turn(square.target.id, human)
@@ -159,8 +163,11 @@ function gameOver(gameWon) {
     cells[i].removeEventListener("click", turnclicks, false);
     }
    if(gameWon.player==human || gameWon.player==ai){  
-    declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); }
-    else{declareWin(gameWon.player==player1?"X Wins!":"O Wins!");}
+    declareWin(gameWon.player==human?"YOU WIN!":"YOU LOSE!"); 
+    document.getElementById("hint").disabled=true;}
+    else{declareWin(gameWon.player==player1?"X Wins!":"O Wins!");
+    document.getElementById("hint").disabled=true;}
+  
 }
 
 function declareWin(who) {
@@ -369,9 +376,11 @@ function level1(newBoard, player,counts) {
  return choosen;
 }
 function hint(){
+    if(emptySpot().length!=9 && !checkTie()) {
     document.getElementById("hint").style.backgroundImage = "url(bulbon.png)";
      hintindex= minimax(board, human).index;
     document.getElementById(hintindex).style.backgroundColor="#f4ce10";
+    }
 }
 
 
