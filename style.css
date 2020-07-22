@@ -38,6 +38,7 @@ body{
 	width: 100%;
 	height: 100%;
 	transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
 	transition: all 0.5s ease;
 	background: rgba(232, 80, 91, 0.8);
 	border-radius: 20px;
@@ -94,6 +95,7 @@ body{
 	backface-visibility: hidden;
 	background: rgba(232, 80, 91, 0.9);
 	color: grey;
+    -webkit-transform:rotateY(180deg);
     transform: rotateY(180deg); 
 	text-align: center;
 	font-family: myFirstFont;
@@ -126,6 +128,7 @@ td {
     background-color: BLACK;
     display: inline-block;
     box-shadow: 0 .03em .08em rgba(0,0,0, 0.5);
+    -webkit-transition: background-color 0.2s ease;
     transition: background-color 0.2s ease;
     width: 80px;
     height: 80px;
@@ -195,6 +198,7 @@ table tr td:last-child {
 
 #hint{
     width: 30px;
+    -webkit-transition: 0.4s;
     transition: 0.4s;
     margin-top: 15px; 
    height: 50px; 
