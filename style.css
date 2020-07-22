@@ -197,3 +197,7 @@ table tr td:last-child {
     #heading{width: 40%}
 
 }*/
+@font-face{
+    font-family: "Comic Sans MS"
+    src: url(comicz.ttf);
+}
