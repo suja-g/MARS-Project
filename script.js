@@ -381,7 +381,7 @@ function level1(newBoard, player,counts) {
 }
 //hint function is for highlighting suggestion of next move for human when playing against ai.
 function hint(){
-    if(emptySpot().length!=9 && !checkTie()) {
+    if(emptySpot().length!=0 && !checkTie()) {
     document.getElementById("hint").style.backgroundImage = "url(bulbon.png)";
      hintindex= minimax(board, human).index;
     document.getElementById(hintindex).style.backgroundColor="#f4ce10";
