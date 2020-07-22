@@ -53,6 +53,7 @@ function turnclicks(square){
 function selectSym(sym){
      document.getElementById("friend").style.backgroundColor="#f9d56e"; 
      document.getElementById("hint").style.visibility="visible";
+     document.getElementById("hint").disabled=false;
      document.getElementById("button").style.marginLeft= "-210px";
         human = sym;
         ai = sym==='O' ? '✘' :'O';
