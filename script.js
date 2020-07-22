@@ -76,9 +76,9 @@ if(levell!=0) {   document.getElementById("cards").style.transform= "rotateY(180
     document.getElementById("l2").disabled=true;
      document.getElementById("l3").disabled=true;
 
-   if (ai === '✘') {
+   /*if (ai === '✘') {
       turn(bestSpot(levell), ai);
-  }
+  }*/
 }
    document.querySelector(".endgame").style.display="none";
 
