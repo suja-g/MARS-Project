@@ -167,7 +167,6 @@ function emptySpot() {
 
 function levels(count)
 {
-    document.getElementById("friend").disabled=true;
     levell=count;
     if(count==1)
     {
