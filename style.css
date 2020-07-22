@@ -54,7 +54,7 @@ body{
 	color: #f3ecc2;
 }
 .buttons {
-    width: 200px;
+    width: 180px;
     height: 50px;
     border: none;
     background-color: #f9d56e;
@@ -187,6 +187,21 @@ table tr td:last-child {
 #button:hover {
     color:black;
 }
-@media(min-width: 300px) and (max-width: 400px){
-	#container{width: 50%;}
+@font-face{
+    font-family: "Comic Sans MS"
+    src: url(comicz.ttf);
 }
+/*@media(min-width: 300px) and (max-width: 400px){
+	#container{width: 70%;}
+    .buttons{ width: 50%;
+             font-size: 90% }
+    .buttons1{width: 50%;
+        font-size: 90%}
+    #button{width: 90%;
+        font-size: 90%}
+    
+   
+
+    #heading{width: 40%}
+
+}*/
