@@ -14,8 +14,7 @@ const cells=document.querySelectorAll(".cell");
 startGame();
 
 
-function friend(){
-    
+function friend(){ 
    document.getElementById("friend").style.backgroundColor="#14b1ab";
    document.getElementById("cards").style.transform= "rotateY(180deg)"
     document.getElementById("first").disabled=true;
@@ -111,7 +110,7 @@ function startGame() {
        document.getElementById("l1").disabled=false;
        document.getElementById("l2").disabled=false;
         document.getElementById("l3").disabled=false;
-        
+        document.getElementById("hint").disabled=false;
      levell=0;
 }
 function newGame(){
