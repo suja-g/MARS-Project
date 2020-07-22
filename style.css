@@ -50,7 +50,7 @@ body{
 	color: #f3ecc2;
 }
 .buttons {
-    width: 200px;
+    width: 180px;
     height: 50px;
     border: none;
     background-color: #f9d56e;
@@ -183,7 +183,7 @@ table tr td:last-child {
 #button:hover {
     color:black;
 }
-@media(min-width: 300px) and (max-width: 400px){
+/*@media(min-width: 300px) and (max-width: 400px){
 	#container{width: 70%;}
     .buttons{ width: 50%;
              font-size: 90% }
@@ -196,4 +196,4 @@ table tr td:last-child {
 
     #heading{width: 40%}
 
-}
+}*/
