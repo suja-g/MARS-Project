@@ -175,7 +175,6 @@ function emptySpot() {
 
 function levels(count)
 {
-    
     levell=count;
     if(count==1)
     {
