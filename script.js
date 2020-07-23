@@ -85,7 +85,7 @@ if(levell!=0) {   document.getElementById("cards").style.transform= "rotateY(180
 
 
    if (ai === '✘') {
-      turn(bestSpot(levell), ai);
+      turn(Math.floor(Math.random()*9), ai);
   }
 }
    document.querySelector(".endgame").style.display="none";
@@ -341,7 +341,7 @@ function level1(newBoard, player,counts) {
  }
  var choosen;
  if(counts==1 ) {
- if(Math.random()*100<=20)
+ if(Math.floor(Math.random()*101)<=20)
  {
      choosen=moves[bestMove];
  }
@@ -358,7 +358,7 @@ function level1(newBoard, player,counts) {
      }
     }
     else{
-        if(Math.random()*100<=70)
+        if(Math.floor(Math.random()*101)<=70)
  {
      choosen=moves[bestMove];
  }
