@@ -95,7 +95,7 @@ function onPressCreate() {
   document.getElementById("onPressCreate").style.display="block";
   document.getElementById("stringRoomId").style.display="block";
   document.getElementById("stringRoomId").innerText="Your Room Id is\n"+roomId+"\nWaiting for friend...";
-  console.log(pubnubGame.uuid);
+ // console.log(pubnubGame.uuid);
   pubnubGame.subscribe({
     channels: [lobbyChannel],
     withPresence: true
@@ -132,7 +132,7 @@ function onSubmitJoin()
         channel: lobbyChannel
       });   
          document.getElementById("button").style.marginLeft= "-180px";
-   document.getElementById("friend").style.backgroundColor="#14b1ab";
+  // document.getElementById("friend").style.backgroundColor="#14b1ab";
    document.getElementById("cards").style.transform= "rotateY(180deg)"
          }
          else{
@@ -248,7 +248,7 @@ if(levell!=0) {   document.getElementById("cards").style.transform= "rotateY(180
 
 
    if (ai === '✘') {
-      turn(bestSpot(levell), ai);
+      turn(Math.floor(Math.random()*9), ai);
   }
 }
    document.querySelector(".endgame").style.display="none";
