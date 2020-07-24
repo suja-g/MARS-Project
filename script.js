@@ -28,7 +28,9 @@ pubnubGame.addListener({
     if(msgString.opponentReady===true && isRoomCreator === true){
         onlinePlayerStart();
     }
-    if(msgString.prevPos != -1) { turn(msgString.prevPos, (msgString.turn === 'onlinePlayer')? onlineOpponent : onlinePlayer);}
+    if(msgString.prevPos != -1) { turn(msgString.prevPos, (msgString.turn === 'onlinePlayer')? onlineOpponent : onlinePlayer);
+      document.getElementById("next").style.display="block";
+    document.getElementById("next").innerText= "Turn:"+msgString.turn;}
   }
 });
 var isOpponent = false;
@@ -111,6 +113,9 @@ function onPressCreate() {
   });
   isRoomCreator = true;
     document.getElementById("LobbyFull").style.display="none";
+    document.getElementById("you").style.display="block";
+    document.getElementById("you").innerText = "YOU:X";
+    document.getElementById("next").style.display="block";
 }
 
 function onPressJoin(){
@@ -132,6 +137,9 @@ function onSubmitJoin()
         withPresence: true
       });
         isRoomCreator = false;
+        document.getElementById("you").style.display="block";
+        document.getElementById("next").style.display="block";
+         document.getElementById("you").innerText = "YOU:O";
         pubnubGame.publish({
         message: {
           opponentReady: true,
@@ -299,6 +307,8 @@ function startGame() {
      document.getElementById("LobbyFull").innerText='';
      document.getElementById("LobbyFull").style.display = "none";
      document.getElementById("onPressJoin").style.display = "none";
+     document.getElementById("you").style.display = "none";
+     document.getElementById("next").style.display = "none";
     pubnubGame.unsubscribeAll();
      levell=0;
 }

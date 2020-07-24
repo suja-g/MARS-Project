@@ -223,7 +223,7 @@ table tr td:last-child {
     background-color: rgb(166, 91, 241); 
     position: absolute;
     left: 50%;
-    margin-left: -210px; 
+    margin-left: -180px; 
     padding-bottom: 10px;
     text-align: center;
     -webkit-border-radius: 20px;
@@ -240,8 +240,8 @@ table tr td:last-child {
 
 #hint{
     width: 30px;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
     margin-top: 15px; 
    height: 50px; 
    background-image: url("bulb.png") ;
@@ -257,8 +257,20 @@ table tr td:last-child {
     background-size: 30px 50px;
     -webkit-background-size: 30px 50px;
 }
-
-
+ #you{
+    float: left;
+    margin-left: 150px;
+    margin-top: -40px; 
+    font-family: myFirstFont;
+    font-size: 0.9em;
+    color: #f3ecc2;
+}
+#next{
+    margin-left: -210px;
+    margin-top: 1px; 
+    font-family: myFirstFont;
+    font-size: 0.9em;
+    color: #f3ecc2;}
 
 
 
