@@ -67,6 +67,9 @@ function botOptionShow() {
     document.getElementById("LobbyFull").style.display="none";
     var y = document.getElementById("onlineOptions");
     y.style.display = "none";
+    document.getElementById("l1").disabled=false;
+    document.getElementById("l2").disabled=false;
+     document.getElementById("l3").disabled=false;
 
     var x = document.getElementById("botOptions");
     x.style.display = "block";
@@ -77,7 +80,13 @@ function botOptionShow() {
 function onlineOptionShow() {
     var y = document.getElementById("botOptions");
     y.style.display = "none";
-
+    document.getElementById("l1").disabled=true;
+    document.getElementById("l2").disabled=true;
+     document.getElementById("l3").disabled=true;
+     document.getElementById("l3").style.backgroundColor="#f9d56e"
+     document.getElementById("l2").style.backgroundColor="#f9d56e"
+     document.getElementById("l1").style.backgroundColor="#f9d56e"
+     levell=0;
     var x = document.getElementById("onlineOptions");
     x.style.display = "block";
     
