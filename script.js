@@ -64,6 +64,9 @@ function onlinePlayerClick(square){
 }}
 
 function botOptionShow() {
+    document.getElementById("bot").style.backgroundColor= "#14b1ab";
+    document.getElementById("onlinefriend").style.backgroundColor= "#f9d56e";
+    document.getElementById("friend").style.backgroundColor= "#f9d56e";
     document.getElementById("LobbyFull").style.display="none";
     var y = document.getElementById("onlineOptions");
     y.style.display = "none";
@@ -78,6 +81,12 @@ function botOptionShow() {
 }
 
 function onlineOptionShow() {
+    document.getElementById("bot").style.backgroundColor= "#f9d56e";
+    document.getElementById("onlinefriend").style.backgroundColor= "#14b1ab";
+    document.getElementById("friend").style.backgroundColor= "#f9d56e";
+    document.getElementById("l1").style.backgroundColor= "#f9d56e";
+    document.getElementById("l2").style.backgroundColor= "#f9d56e";
+    document.getElementById("l3").style.backgroundColor= "#f9d56e";
     var y = document.getElementById("botOptions");
     y.style.display = "none";
     document.getElementById("l1").disabled=true;
@@ -188,6 +197,11 @@ function friend(){
     document.getElementById("button").style.marginLeft= "-180px";
    document.getElementById("friend").style.backgroundColor="#14b1ab";
    document.getElementById("cards").style.transform= "rotateY(180deg)"
+   document.getElementById("bot").style.backgroundColor= "#f9d56e"
+   document.getElementById("onlinefriend").style.backgroundColor= "#f9d56e";
+   document.getElementById("l1").style.backgroundColor= "#f9d56e";
+   document.getElementById("l2").style.backgroundColor= "#f9d56e";
+   document.getElementById("l3").style.backgroundColor= "#f9d56e";
     document.getElementById("first").disabled=true;
    document.getElementById("second").disabled=true;
    document.getElementById("l1").disabled=true;
@@ -284,6 +298,8 @@ function startGame() {
      document.getElementById("second").style.backgroundColor="#f9d56e"
      document.getElementById("first").style.backgroundColor="#f9d56e"
      document.getElementById("friend").style.backgroundColor="#f9d56e"
+     document.getElementById("bot").style.backgroundColor= "#f9d56e"
+     document.getElementById("onlinefriend").style.backgroundColor= "#f9d56e";
      document.getElementById("friend").disabled=false;
        document.getElementById("first").disabled=false;
        document.getElementById("second").disabled=false;
@@ -377,6 +393,7 @@ function emptySpot() {
 function levels(count)
 {  
     levell=count;
+    document.getElementById("friend").style.backgroundColor="#f9d56e";
     if(count==1)
     {
         document.getElementById("l1").style.backgroundColor="#14b1ab"
