@@ -16,7 +16,7 @@ body{
 	background-position:50% 0%; 
 	background-color: #0d0d0d;
     background-size: cover;
-
+    -webkit-background-size: cover;
 }
 
 #heading span{
@@ -37,9 +37,12 @@ body{
 	position: absolute;
 	width: 100%;
 	height: 100%;
+    -webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
 	transition: all 0.5s ease;
-	background: rgba(232, 80, 91, 0.8);
+	background: rgba(232, 80, 91, 0);
+    -webkit-border-radius: 20px;
 	border-radius: 20px;
 }
 .thefront{
@@ -52,6 +55,7 @@ body{
 	text-align: center;
 	font-family: myFirstFont;
     font-size: 1.5em;
+    -webkit-border-radius: 20px;
 	border-radius: 20px;
 	color: #f3ecc2;
 }
@@ -61,6 +65,7 @@ body{
     border: none;
     background-color: #f9d56e;
     text-align: center;
+    -webkit-border-radius: 10px;
     border-radius: 10px;
     color: rgb(15,15,15);
     font-size: 1em;
@@ -76,6 +81,7 @@ body{
     border: none;
     background-color: #f9d56e;
     text-align: center;
+    -webkit-border-radius: 10px;
     border-radius: 10px;
     color: rgb(15,15,15);
     font-size: 1em;
@@ -90,12 +96,15 @@ body{
 	position: absolute;
 	width: 100%;
 	height: 100%;
+    -webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	background: rgba(232, 80, 91, 0.9);
 	color: grey;
+    -webkit-transform:rotateY(180deg);
     transform: rotateY(180deg); 
 	text-align: center;
 	font-family: myFirstFont;
+    -webkit-border-radius: 20px;
 	border-radius: 20px;
 	font-size: 18px;
 	font-weight: bold;
@@ -124,11 +133,14 @@ td {
     border: none;
     background-color: BLACK;
     display: inline-block;
+    -webkit-box-shadow: 0 .03em .08em rgba(0,0,0, 0.5);
     box-shadow: 0 .03em .08em rgba(0,0,0, 0.5);
+    -webkit-transition: background-color 0.2s ease;
     transition: background-color 0.2s ease;
     width: 80px;
     height: 80px;
     line-height: 80px;
+    -webkit-border-radius: 10%;
     border-radius: 10%;
     margin: 6px;
 }
@@ -152,6 +164,7 @@ table tr td:last-child {
     background-color: rgba(166, 91, 241, 0.8);
     position: absolute;
     text-align: center;
+    -webkit-border-radius: 20px;
     border-radius: 20px;
     color: white;
     font-size: 2.5em;
@@ -166,6 +179,7 @@ table tr td:last-child {
     width: 200px;
     top: 10px;
     position: absolute;
+    -webkit-border-radius: 20px;
     border-radius: 20px;
     
 }
@@ -180,9 +194,9 @@ table tr td:last-child {
     margin-left: -210px; 
     padding-bottom: 10px;
     text-align: center;
+    -webkit-border-radius: 20px;
     border-radius: 20px;
     color: white;
-
     font-size: 1.7em;
     font-family: myFirstFont;
     cursor: pointer;
@@ -194,6 +208,7 @@ table tr td:last-child {
 
 #hint{
     width: 30px;
+    -webkit-transition: 0.4s;
     transition: 0.4s;
     margin-top: 15px; 
    height: 50px; 
@@ -204,9 +219,11 @@ table tr td:last-child {
    outline: none;
    background-repeat: no-repeat;
     background-position: 0% 0%; 
+    -webkit-background-size: cover;
     background-size: cover;
     background-color: rgba(232, 80, 91, 0.8);
     background-size: 30px 50px;
+    -webkit-background-size: 30px 50px;
 }
 
 
