@@ -30,7 +30,7 @@ pubnubGame.addListener({
     }
     if(msgString.prevPos != -1) { turn(msgString.prevPos, (msgString.turn === 'onlinePlayer')? onlineOpponent : onlinePlayer);
       document.getElementById("next").style.display="block";
-    document.getElementById("next").innerText= "Turn:"+msgString.turn;}
+    document.getElementById("next").innerText= "Turn:"+ (msgString.turn === 'onlinePlayer'? 'X':'O');}
   }
 });
 var isOpponent = false;
