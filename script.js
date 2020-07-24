@@ -122,7 +122,8 @@ function onSubmitJoin()
         channels: [lobbyChannel],
         withPresence: true
       });
-      pubnubGame.publish({
+        isRoomCreator = false;
+        pubnubGame.publish({
         message: {
           opponentReady: true,
           turn: 'onlinePlayer',
