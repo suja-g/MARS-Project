@@ -83,11 +83,7 @@ function onlineOptionShow() {
     
     document.getElementById("left").style.marginTop= "-2px"; 
  
-<<<<<<< HEAD
-   // console.log(pubnubGame);
-=======
     document.getElementById("LobbyFull").style.display="none";
->>>>>>> 7e4dee7a20ebba3845e537a9c4d77dc5964a768f
 }
 
 // Create a room channel
