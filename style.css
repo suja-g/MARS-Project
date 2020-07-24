@@ -41,7 +41,7 @@ body{
 	transform-style: preserve-3d;
     -webkit-transition: 0.5s;
 	transition: all 0.5s ease;
-	background: rgba(232, 80, 91, 0.8);
+	background: rgba(232, 80, 91, 0);
     -webkit-border-radius: 20px;
 	border-radius: 20px;
 }
