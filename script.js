@@ -389,14 +389,14 @@ function levels(count)
 //bestSpot function will return index of the board from ai side according to the levels
 function bestSpot(count) {
     if(count==3) {
-    return minimax(board, ai).index; }
+    return minimax(board, ai,3).index; }
     else if(count==1)
     {
-        return level1(board, ai,1).index;
+        return minimax(board, ai,1).index;
     }
     else if(count==2)
     {
-        return level1(board,ai,2).index;
+        return minimax(board,ai,2).index;
     }
 }
 //checkTie function will check if tie situation is happening in game or not
@@ -419,61 +419,9 @@ function checkTie()
     return false;    
 }
 //minimax function takes the input of the user and assumes the optimal move of human and return the index for bestmove from ai side
-function minimax(newBoard, player) {
-    var availSpots = emptySpot(newBoard);
-    
-    if(checkWin(newBoard, human)) {
-           return {score: -10};
-     } else if(checkWin(newBoard, ai)) {
-           return {score: 10};
-     } else if(availSpots.length===0) {
-           return {score: 0};
-     }
-     
-     var moves=[];
-     for(var i=0; i<availSpots.length; i++)
-     {
-        var move={};     
-        move.index= newBoard[availSpots[i]];
-        newBoard[availSpots[i]]=player;
 
-     if(player==ai) {
-        var result = minimax(newBoard, human);
-        move.score = result.score;
-        
-     }else {
-        var result=minimax(newBoard, ai);
-        move.score=result.score;
-    }
-   newBoard[availSpots[i]]=move.index;
-    if ((player === ai && move.score === 10) || (player === human && move.score === -10))
-      return move;
-    else 
-      moves.push(move);
-    
-}
- var bestMove;
- if(player===ai) {
-    var bestScore = -100000;
-    for (var i = 0; i < moves.length; i++) {
-        if(moves[i].score>bestScore) {
-               bestScore=moves[i].score;
-               bestMove=i;
-        }
-     }
- }else {
-    var bestScore = 100000;
-    for (var i = 0; i < moves.length; i++) {
-        if(moves[i].score<bestScore) {
-            bestScore = moves[i].score;
-            bestMove = i;
-        }    
-    }
- }
- return moves[bestMove];
-}
-//level1 function is for level 1 and 2 . It declares that the ai plays partially optimal according to the level.
-function level1(newBoard, player,counts) {
+//This function is for all levels. It declares that the ai plays optimally according to the level.
+function minimax(newBoard, player,counts) {
     var availSpots = emptySpot(newBoard);
     
     if(checkWin(newBoard, human)) {
@@ -542,7 +490,7 @@ function level1(newBoard, player,counts) {
      else { choosen=moves[bestMove];}
      }
     }
-    else{
+    else if(counts==2){
         if(Math.random()*100<=70)
  {
      choosen=moves[bestMove];
@@ -561,6 +509,10 @@ function level1(newBoard, player,counts) {
      }
      }
     }
+    else {
+        choosen=moves[bestMove];
+    }
+ 
  
  return choosen;
 }
@@ -568,7 +520,11 @@ function level1(newBoard, player,counts) {
 function hint(){
     if(emptySpot().length!=0 && !checkTie()) {
     document.getElementById("hint").style.backgroundImage = "url(bulbon.png)";
-     hintindex= minimax(board, human).index;
+    if(emptySpot().length!=9) {
+     hintindex= minimax(board, human, 3).index;
+    } else {
+        hintindex= Math.floor(Math.random()*9);
+    }
     document.getElementById(hintindex).style.backgroundColor="#f4ce10";
     }
 }
