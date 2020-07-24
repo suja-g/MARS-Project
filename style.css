@@ -102,6 +102,9 @@ input{
     font-family: myFirstFont;
     cursor: pointer;
 }
+#LobbyFull{
+    font-size: 0.5em;
+}
 .buttonss:hover{
     color: rgb(240, 245, 242);
 }
