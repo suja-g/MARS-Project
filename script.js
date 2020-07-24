@@ -64,6 +64,7 @@ function onlinePlayerClick(square){
 }}
 
 function botOptionShow() {
+    document.getElementById("LobbyFull").style.display="none";
     var y = document.getElementById("onlineOptions");
     y.style.display = "none";
 
@@ -82,7 +83,11 @@ function onlineOptionShow() {
     
     document.getElementById("left").style.marginTop= "-2px"; 
  
+<<<<<<< HEAD
    // console.log(pubnubGame);
+=======
+    document.getElementById("LobbyFull").style.display="none";
+>>>>>>> 7e4dee7a20ebba3845e537a9c4d77dc5964a768f
 }
 
 // Create a room channel
@@ -100,10 +105,12 @@ function onPressCreate() {
     withPresence: true
   });
   isRoomCreator = true;
+    document.getElementById("LobbyFull").style.display="none";
 }
 
 function onPressJoin(){
-  document.getElementById("onPressCreate").style.display="none";
+  document.getElementById("LobbyFull").style.display="none";
+    document.getElementById("onPressCreate").style.display="none";
   document.getElementById("onPressJoin").style.display="block";  
 }
 
@@ -119,7 +126,8 @@ function onSubmitJoin()
         channels: [lobbyChannel],
         withPresence: true
       });
-      pubnubGame.publish({
+        isRoomCreator = false;
+        pubnubGame.publish({
         message: {
           opponentReady: true,
           turn: 'onlinePlayer',
@@ -132,7 +140,8 @@ function onSubmitJoin()
    document.getElementById("cards").style.transform= "rotateY(180deg)"
          }
          else{
-            document.getElementById("LobbyFull").innerText="Lobby is full!";
+             document.getElementById("LobbyFull").style.display="block";
+             document.getElementById("LobbyFull").innerText="Lobby is full!";
          } 
 }).catch((error) => { 
   console.log(error);
@@ -170,7 +179,7 @@ startGame();
 //Human_to_friend game code
 
 function friend(){
-    
+    document.getElementById("LobbyFull").style.display="none";
     document.getElementById("button").style.marginLeft= "-180px";
    document.getElementById("friend").style.backgroundColor="#14b1ab";
    document.getElementById("cards").style.transform= "rotateY(180deg)"
