@@ -146,7 +146,7 @@ function onSubmitJoin()
          }
          else{
              document.getElementById("LobbyFull").style.display="block";
-             document.getElementById("LobbyFull").innerText="Lobby is full!";
+             document.getElementById("LobbyFull").innerText="Lobby is full...";
          } 
 }).catch((error) => { 
   console.log(error);
